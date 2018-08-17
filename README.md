@@ -7,8 +7,8 @@ Nodejs script for programmatic WebDollar transactions (Experimental). The script
 
 Several scripts were developed to exemplify how to call the private API endpoints from Nodejs:
 
-- import_wallet
-- create_transaction
+- [import_wallet.js](https://github.com/morion4000/webdollar-transactions-script/blob/master/examples/import_wallet.js)
+- [create_transaction.js](https://github.com/morion4000/webdollar-transactions-script/blob/master/examples/create_transaction.js)
 
 # Workflow
 
