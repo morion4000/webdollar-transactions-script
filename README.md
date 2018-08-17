@@ -1,2 +1,2 @@
 # webdollar-transactions-script
-Nodejs script for automated WebDollar transactions (Experimental)
+Nodejs script for programmatic WebDollar transactions (Experimental)
