@@ -1,0 +1,9 @@
+{
+  "name": "webdollar-transactions-script",
+  "version": "0.0.1",
+  "description": "Nodejs script for programmatic WebDollar transactions",
+  "author": "morion4000",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
+}
