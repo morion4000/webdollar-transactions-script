@@ -5,10 +5,10 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 var api_secret = '1a2a450cb29bcc2bd3a6cba8729c77c2d90d5dc6';
 var api_url = 'http://testnet1.hoste.ro:8000';
 
-var transaction_fee = 1;
+var transaction_fee = process.env.FEE || 1;
 var transaction_limit = 10;
 var transactions = 0;
-var amount = 10;
+var amount = process.env.AMOUNT || 10;
 
 var to_addresses = [
   'WEBD$gA0wAI2f208tTDmzUE5cJfd+ACUB@aGszb$',
