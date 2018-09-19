@@ -2,25 +2,25 @@ var request = require('request');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
-var api_secret = '7f55a0ed8b021080de00960cc73768fb';
-var api_url = 'https://wd.hoste.ro:40000';
+var api_secret = '1a2a450cb29bcc2bd3a6cba8729c77c2d90d5dc6';
+var api_url = 'http://testnet1.hoste.ro:8000';
 
 var transaction_fee = 1;
 var transaction_limit = 10;
 var transactions = 0;
-var amount = 1000;
+var amount = 10;
 
 var to_addresses = [
-  'WEBD$gD1Km74GiVeTX3NqeY31iJ49FfdCAFCB0P$',
+  'WEBD$gA0wAI2f208tTDmzUE5cJfd+ACUB@aGszb$',
 ];
 
 console.log('sending to', to_addresses.length);
 
 var wallet = {
   "version": "0.1",
-  "address": "WEBD$gD1Km74GiVeTX3NqeY31iJ49FfdCAFCB0P$",
-  "publicKey": "063373759855cd4ac52fae078e9f36dfdba420191beb9e3a1dbc5b7205e66292",
-  "privateKey": "80cd858e76bd2b253b634d71bd2c8ea97314154020f63ab4baf2e4d605630529c7063373759855cd4ac52fae078e9f36dfdba420191beb9e3a1dbc5b7205e66292e8d1ce62"
+  "address": "WEBD$gCD4CFYTjWqXDiQ3s7zz@G0b#DwDjh5udb$",
+  "publicKey": "f4692fa1a66995984f7c5ef1f9d08a83535986e82b786054cf92e94c5a3aea8b",
+  "privateKey": "800163f94970607effb636a3cdc494d616b1c912f2b0a4594cbdc379002ffa439cf4692fa1a66995984f7c5ef1f9d08a83535986e82b786054cf92e94c5a3aea8b120dc907"
 };
 
 to_addresses.forEach(function(w, i) {
