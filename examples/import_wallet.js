@@ -2,20 +2,15 @@ var request = require('request');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
-var api_secret = '7f55a0ed8b021080de00960cc73768fb';
-var api_url = 'https://wd.hoste.ro:40000';
+var api_secret = '1a2a450cb29bcc2bd3a6cba8729c77c2d90d5dc6';
+var api_url = 'http://testnet1.hoste.ro:8000';
 
-var wallets = [{
-  "version": "0.1",
-  "address": "WEBD$gD1Km74GiVeTX3NqeY31iJ49FfdCAFCB0P$",
-  "publicKey": "063373759855cd4ac52fae078e9f36dfdba420191beb9e3a1dbc5b7205e66292",
-  "privateKey": "80cd858e76bd2b253b634d71bd2c8ea97314154020f63ab4baf2e4d605630529c7063373759855cd4ac52fae078e9f36dfdba420191beb9e3a1dbc5b7205e66292e8d1ce62"
-}];
+var wallets = [{"version":"0.1","address":"WEBD$gCD4CFYTjWqXDiQ3s7zz@G0b#DwDjh5udb$","publicKey":"f4692fa1a66995984f7c5ef1f9d08a83535986e82b786054cf92e94c5a3aea8b","privateKey":"800163f94970607effb636a3cdc494d616b1c912f2b0a4594cbdc379002ffa439cf4692fa1a66995984f7c5ef1f9d08a83535986e82b786054cf92e94c5a3aea8b120dc907"}];
 
-wallet.forEach(function(w, i) {
+wallets.forEach(function(w, i) {
   var encoded_address = encodeURIComponent(w.address);
   var balance_url = api_url + '/address/balance/' + encoded_address;
-  var import_url = api_url + '/' + api_secret + '/wallets/import/' + w.address + '/' + w.publicKey + '/' + w.privateKey;
+  var import_url = api_url + '/' + api_secret + '/wallets/import/' + encoded_address + '/' + w.publicKey + '/' + w.privateKey;
 
   // Do not import empty wallets
   // Important: Wait 1 second between imports
