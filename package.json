@@ -4,6 +4,7 @@
   "description": "Nodejs script for programmatic WebDollar transactions",
   "author": "morion4000",
   "dependencies": {
+    "async": "^2.6.1",
     "request": "^2.87.0",
     "underscore": "^1.9.1"
   }
