@@ -34,12 +34,12 @@ function loop(wallets) {
 
       transactions.push({
         from: wallet.address,
-        to: res[0]
+        to: res[0].address
       });
 
       transactions.push({
         from: wallet.address,
-        to: res[1]
+        to: res[1].address
       });
 
       callback();
