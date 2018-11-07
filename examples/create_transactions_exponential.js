@@ -15,7 +15,7 @@ var wallet = process.env.WALLET ? JSON.parse(process.env.WALLET) : {
   "privateKey": "809f0528e6ff08d71b8ef931630ff030dd80a65fbbde5d39c2fe854d98fe5e854edaf3beeb5240a1bbae1247099ccb3b4c4d0b1b3b27c422b64e8d9aebf0d9eee1896f1cba"
 };
 
-loop([wallet]);
+loop([wallet.address]);
 
 function loop(wallets) {
   var transactions = [];
@@ -30,15 +30,15 @@ function loop(wallets) {
         return callback(err);
       }
 
-      new_wallets.push(wallet);
+      new_wallets.push(wallet.address);
 
       transactions.push({
-        from: wallet,
+        from: wallet.address,
         to: res[0]
       });
 
       transactions.push({
-        from: wallet,
+        from: wallet.address,
         to: res[1]
       });
 
