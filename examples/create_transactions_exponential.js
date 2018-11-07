@@ -30,15 +30,18 @@ function loop(wallets) {
         return callback(err);
       }
 
+      console.log('created wallet', res[0].address);
+      console.log('created wallet', res[1].address);
+
       new_wallets.push(wallet.address);
 
       transactions.push({
-        from: wallet.address,
+        from: wallet,
         to: res[0].address
       });
 
       transactions.push({
-        from: wallet.address,
+        from: wallet,
         to: res[1].address
       });
 
