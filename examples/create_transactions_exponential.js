@@ -90,7 +90,7 @@ function create_wallet(callback) {
       return callback(e);
     }
 
-    callback(null, _wallet);
+    callback(null, _wallet.wallet);
   });
 }
 
