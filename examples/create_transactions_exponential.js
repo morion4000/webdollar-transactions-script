@@ -71,7 +71,7 @@ function loop(wallets) {
 }
 
 function create_wallet(callback) {
-  var create_wallet_url = api_url + '/' + api_secret + '/wallets/create';
+  var create_wallet_url = api_url + '/' + api_secret + '/wallets/create-wallet';
 
   request.get(create_wallet_url, function(err, message, body) {
     if (err) {
