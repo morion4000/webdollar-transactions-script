@@ -10,9 +10,9 @@ var transaction_fee = process.env.FEE || 10;
 var amount = process.env.AMOUNT || 20;
 var wallet = process.env.WALLET ? JSON.parse(process.env.WALLET) : {
   "version": "0.1",
-  "address": "WEBD$gDSRHzxo4hSnsxDxZ3q5maccGLgyMeH9fz$",
-  "publicKey": "daf3beeb5240a1bbae1247099ccb3b4c4d0b1b3b27c422b64e8d9aebf0d9eee1",
-  "privateKey": "809f0528e6ff08d71b8ef931630ff030dd80a65fbbde5d39c2fe854d98fe5e854edaf3beeb5240a1bbae1247099ccb3b4c4d0b1b3b27c422b64e8d9aebf0d9eee1896f1cba"
+  "address": "WEBD$gAYakKoZDM7zNk+SRsD4+HhEU3MdEEd88r$",
+  "publicKey": "b2196351c9e7b17360151bc4121ac8aeb793abb905d0fb8618cc016b32175316",
+  "privateKey": "808184d9d8d339260e3e4826bd8717f708e118c0122c543d8937285d07a45c9674b2196351c9e7b17360151bc4121ac8aeb793abb905d0fb8618cc016b321753167d182698"
 };
 
 loop([wallet.address]);
@@ -22,7 +22,7 @@ function loop(wallets) {
   var new_wallets = [];
 
   async.each(wallets, function(wallet, callback) {
-    async.parallel([
+    async.series([
       create_wallet,
       create_wallet
     ], function(err, res) {
@@ -45,7 +45,7 @@ function loop(wallets) {
         to: res[1].address
       });
 
-      callback();
+      setTimeout(callback, 2000); // wait for the wallets to be created properly
     });
   }, function(err) {
     if (err) {
@@ -57,7 +57,9 @@ function loop(wallets) {
     async.each(transactions, function(transaction, callback) {
       get_wallet_balance(transaction.from, function(balance) {
         // 2 transactions will be made from each wallet
-        var amount = (balance - transaction_fee - 1) / 2;
+        var amount = (balance - transaction_fee - 100) / 2;
+
+        console.log('sending', amount, 'WEBD');
 
         create_transaction_and_wait(transaction.from, transaction.to, amount, callback);
       });
@@ -108,10 +110,10 @@ function create_transaction_and_wait(from, to, amount, callback) {
 
     console.log('transaction created', from, to);
 
-    // Check for ~10 minutes to make sure transaction was mined
+    // Check for ~5 minutes to make sure transaction was mined
     async.retry({
       times: 50,
-      interval: 1000
+      interval: 5000
     }, function(_callback) {
       get_wallet_balance(to, function(balance) {
         if (balance > 0) {
@@ -119,7 +121,9 @@ function create_transaction_and_wait(from, to, amount, callback) {
 
           _callback();
         } else {
-          _callback(from + ' ' + to + ' was not mined');
+          console.log('transaction was not mined ' + from + ' ' + to);
+
+          _callback('transaction was not mined in time ' + from + ' ' + to);
         }
       });
     }, callback);
