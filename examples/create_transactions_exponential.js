@@ -14,12 +14,17 @@ var wallet = process.env.WALLET ? JSON.parse(process.env.WALLET) : {
   "publicKey": "b2196351c9e7b17360151bc4121ac8aeb793abb905d0fb8618cc016b32175316",
   "privateKey": "808184d9d8d339260e3e4826bd8717f708e118c0122c543d8937285d07a45c9674b2196351c9e7b17360151bc4121ac8aeb793abb905d0fb8618cc016b321753167d182698"
 };
+var level = 0;
 
 loop([wallet.address]);
 
 function loop(wallets) {
   var transactions = [];
   var new_wallets = [];
+
+  console.log('=== LEVEL', level);
+
+  level++;
 
   async.each(wallets, function(wallet, callback) {
     async.series([
@@ -33,7 +38,8 @@ function loop(wallets) {
       console.log('created wallet', res[0].address);
       console.log('created wallet', res[1].address);
 
-      new_wallets.push(wallet.address);
+      new_wallets.push(res[0].address);
+      new_wallets.push(res[1].address);
 
       transactions.push({
         from: wallet,
@@ -58,6 +64,11 @@ function loop(wallets) {
       get_wallet_balance(transaction.from, function(balance) {
         // 2 transactions will be made from each wallet
         var amount = (balance - transaction_fee - 100) / 2;
+
+        // Start with a small amount for testing multiple times
+        if (wallets.length === 1) {
+          amount = amount / 10000;
+        }
 
         console.log('sending', amount, 'WEBD');
 
