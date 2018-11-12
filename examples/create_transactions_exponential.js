@@ -7,7 +7,6 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 var api_secret = process.env.API_SECRET || '1a2a450cb29bcc2bd3a6cba8729c77c2d90d5dc6';
 var api_url = process.env.API_URL || 'http://testnet2.hoste.ro:8001';
 var transaction_fee = process.env.FEE || 10;
-var amount = process.env.AMOUNT || 20;
 var wallet = process.env.WALLET ? JSON.parse(process.env.WALLET) : {
   "version": "0.1",
   "address": "WEBD$gAYakKoZDM7zNk+SRsD4+HhEU3MdEEd88r$",
